@@ -1,0 +1,6 @@
+p {
+  @apply mt-6 text-xl leading-8 text-gray-700;
+}
+strong {
+  @apply my-6  font-bold tracking-tight text-gray-900;
+}
