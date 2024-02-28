@@ -49,17 +49,24 @@ npm install --save @portabletext/react
 
 ```sh
 NEXT_PUBLIC_SANITY_PROJECT_ID=""
-```
-
-```sh
 NEXT_PUBLIC_SANITY_DATASET=""
-```
-
-```sh
 NEXT_PUBLIC_SANITY_API_VERSION="2024-01-26"
+SANITY_SECRET_TOKEN=""
 ```
 
 ### Cuando obtenemos los datos
+
+```ts
+import { createClient } from "@sanity/client";
+
+export const client = createClient({
+  projectId: "your-project-id",
+  dataset: "your-dataset-name",
+  useCdn: true, // Establecido en "falso" para omitir el caché perimetral
+  apiVersion: "2023-05-03", // Use la fecha actual (YYYY-MM-DD) para apuntar a la última versión de API
+  // token: process.env.SANITY_SECRET_TOKEN //Sólo si deseas actualizar contenido con el cliente
+});
+```
 
 #### Imágenes
 
