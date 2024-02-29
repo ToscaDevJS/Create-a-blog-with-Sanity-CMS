@@ -1,4 +1,4 @@
-import { sanityClientConfig } from "./client";
+import { sanityClientConfig } from "../lib/client";
 
 export async function getPost(slug: string) {
     const query = `*[_type == "post" && slug.current == "${slug}"][0]{

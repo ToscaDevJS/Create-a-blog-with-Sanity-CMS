@@ -1,6 +1,6 @@
 import { CardArticle } from "@/components/Blog/CardArticle";
 import { SectionTitle } from "@/components/SectionTitle";
-import { getAllPosts } from "@/sanity/lib/Sanity.BlogQueries";
+import { getAllPosts } from "@/sanity/queries/Sanity.BlogQueries";
 import { Post } from "@/sanity/types/Sanity.BlogTypes";
 
 export default async function SectionBlog() {

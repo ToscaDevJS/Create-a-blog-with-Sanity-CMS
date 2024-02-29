@@ -1,4 +1,4 @@
-import { sanityClientConfig } from "./client"
+import { sanityClientConfig } from "../lib/client"
 
 export interface CreateNota{
     _type:string,

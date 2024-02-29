@@ -1,8 +1,8 @@
 "use client";
-import { createComments } from "@/sanity/lib/Sanity.CommentQueries";
+import { createComments } from "@/sanity/queries/Sanity.CommentQueries";
 import { CreateComment } from "@/sanity/types/Sanity.CommentTypes";
 import { toast } from "sonner";
-export const AddComment = () => {
+export const AddComments = () => {
   const newComment: CreateComment = {
     _type: "comments",
     userName: "maria orly",

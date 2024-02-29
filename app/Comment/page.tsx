@@ -1,11 +1,12 @@
-import { AddComment } from "@/components/Notas/AddComment";
+import { AddComments } from "@/components/Notas/AddComments";
 import { CardNotas } from "@/components/Notas/CardNotas";
 import { HeaderNotas } from "@/components/Notas/HeaderNotas";
-import { getAllComments } from "@/sanity/lib/Sanity.CommentQueries";
+import { UpdateComments } from "@/components/Notas/UpdateComments";
+import { getAllComments } from "@/sanity/queries/Sanity.CommentQueries";
 import { CommentTypes } from "@/sanity/types/Sanity.CommentTypes";
 
 const PageCrud = async () => {
-  const commentList: CommentTypes[] = await getAllComments(); //no apicar use Effect en comentarios no es necesario que se actualize
+  const commentList: CommentTypes[] = await getAllComments();
 
   return (
     <main>
@@ -19,7 +20,8 @@ const PageCrud = async () => {
             <CardNotas key={data._id} {...data} />
           ))}
 
-          <AddComment />
+          {/* <AddComments /> */}
+          <UpdateComments />
         </section>
       </section>
     </main>

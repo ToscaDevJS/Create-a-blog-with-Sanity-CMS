@@ -1,5 +1,5 @@
 import SlugBlog from "@/components/Blog/SlugBlog";
-import { getPost } from "@/sanity/lib/Sanity.BlogQueries";
+import { getPost } from "@/sanity/queries/Sanity.BlogQueries";
 import { Post } from "@/sanity/types/Sanity.BlogTypes";
 
 const SlugPage = async ({ params }: { params: { slug: string } }) => {
