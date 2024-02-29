@@ -13,9 +13,12 @@
     "@portabletext/react": "^3.0.11",
     "@sanity/client": "^6.15.0",
     "@sanity/image-url": "^1.0.2",
+    "@tabler/icons-react": "^2.47.0",
+    "date-fns": "^3.3.1",
     "next": "14.1.0",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "sonner": "^1.4.2"
   },
   "devDependencies": {
     "@types/node": "^20",

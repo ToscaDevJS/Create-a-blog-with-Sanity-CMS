@@ -7,13 +7,6 @@
    }
    export type {Image_2 as Image}
   
-/* export interface Image{
-    [key: string]: unknown
-     asset?: Reference
-     crop?: ImageCrop
-     hotspot?: ImageHotspot
-} */
-
 /** @public */
 export declare interface Reference {
     _type: string

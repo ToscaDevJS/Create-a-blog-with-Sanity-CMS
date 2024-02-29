@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
-import { urlFor } from "@/sanity/lib/image";
-import { Post } from "@/sanity/types/Sanity.Shema.BlogTypes";
+import { urlFor } from "@/sanity/lib/Sanity.Image";
+import { Post } from "@/sanity/types/Sanity.BlogTypes";
 import Link from "next/link";
 
 export const CardArticle = ({

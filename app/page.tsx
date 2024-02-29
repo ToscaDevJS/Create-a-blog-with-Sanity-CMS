@@ -7,16 +7,16 @@ export default function Home() {
       <header className="border text-white p-5 text-2xl">
         <ul className="flex space-x-4">
           <li>
-            <Link href="/blog" className=" underline">
+            <Link href="/blog" className="text-gray-500 underline">
               Blog
             </Link>
-            <ArrowUpRightIcon className="h-8 w-8 inline-block" />
+            <ArrowUpRightIcon className="h-8 w-8 text-gray-500 inline-block" />
           </li>
           <li>
-            <Link href="/blog/slug-prueba" className=" underline">
-              Blog/..slug
+            <Link href="/Comment" className=" text-gray-500 underline">
+              Comment
             </Link>
-            <ArrowUpRightIcon className="h-8 w-8 inline-block" />
+            <ArrowUpRightIcon className="h-8 w-8 text-gray-500 inline-block" />
           </li>
         </ul>
       </header>

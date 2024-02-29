@@ -1,7 +1,7 @@
 import { CardArticle } from "@/components/Blog/CardArticle";
 import { SectionTitle } from "@/components/SectionTitle";
-import { getAllPosts } from "@/sanity/lib/sanity.queries";
-import { Post } from "@/sanity/types/Sanity.Shema.BlogTypes";
+import { getAllPosts } from "@/sanity/lib/Sanity.BlogQueries";
+import { Post } from "@/sanity/types/Sanity.BlogTypes";
 
 export default async function SectionBlog() {
   const posts: Post[] = await getAllPosts();

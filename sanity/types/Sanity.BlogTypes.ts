@@ -30,14 +30,3 @@
    body:any
   }
   
-  export interface PostLite {
-    _id:string;
-    title: string;
-    slug: Slug;
-    excerpt: string;
-    author: Author;
-    mainImage: MainImage;
-    categories: Category[];
-    publishedAt: string;
-    body:any
-   }

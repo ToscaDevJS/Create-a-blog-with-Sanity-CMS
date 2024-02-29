@@ -147,13 +147,15 @@ strong {
 
 ### Enlaces de referencias
 
-@sanity/cliente: -https://www.sanity.io/docs/js-client#from-v5
+@sanity/cliente: - https://www.sanity.io/docs/js-client#from-v5
 
-@sanity/image-url - https://www.sanity.io/docs/image-url#sanity-image-url
+@sanity/image-url: - https://www.sanity.io/docs/image-url#sanity-image-url
 
-@portabletext/react : https://www.sanity.io/plugins/portabletext-react
+@portabletext/react: - https://www.sanity.io/plugins/portabletext-react
 
-Enrrutador app - https://www.sanity.io/docs/js-client#nextjs-app-router
+Sanity Studio Preview: - https://www.sanity.io/docs/previews-list-views
+
+Enrrutador app: - https://www.sanity.io/docs/js-client#nextjs-app-router
 
 <div style="display: flex">
 <div align="center" style="border-radius: 10px; overflow: hidden; padding: 6px">

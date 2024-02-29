@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
-import { urlFor, urlForImage } from "@/sanity/lib/image";
+import { urlFor, urlForImage } from "@/sanity/lib/Sanity.Image";
 import { PortableText, PortableTextComponents } from "@portabletext/react";
-import { Post } from "@/sanity/types/Sanity.Shema.BlogTypes";
+import { Post } from "@/sanity/types/Sanity.BlogTypes";
 import "./style.css";
 
 export default function SlugBlog({
