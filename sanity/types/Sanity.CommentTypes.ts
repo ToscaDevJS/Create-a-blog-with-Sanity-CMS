@@ -1,34 +1,46 @@
 import { Image } from "./Sanity.ImageTypes";
 
-export interface CommentTypes {
-  _id: string;
-  _createdAt:string;
-  _updatedAt:string;
-  blockDocument:boolean;
+export interface CommentDBTypes {
+  _id: string;  //autogenerados
+  _updatedAt: string; //autogenerados
+  _createdAt: string; //autogenerados
+  blockText: boolean; //autogenerados
+  _rev: string; //autogenerados
+  userName: string; //auth
+  userImage: string; //auth
+  userEmail: string; //auth
+  userUid: string; //auth
+  productoId: string;
   text: string;
+  _type: string;
+  rating: string;
   uploadImage: Image;
-  rating: number;
-  userUid: string;
+}
+
+export interface CommentCreate {
+  _type: string;
   userName: string;
+  userImage: string;
   userEmail: string;
-  userImage: string; 
-  productoIdSlug: number;
-  }
-  export interface CreateComment{
-    _type:string,
-    userName:string,
-    productoId:string,
-    userUid:string,
-    userImage:string,
-    userEmail:string,
-    text:string,
-    rating:string
-  }
-  export interface UpdateComment{
-    userName?:string,
-    productoId?:string,
-    userImage?:string,
-    userEmail?:string,
-    text?:string,
-    rating?:string
-  }
+  userUid: string;
+  productoId: string;
+  text: string;
+  rating: string;
+  uploadImage?: Image;
+}
+
+export interface ICommentCreate {
+  productoId: string,
+  text: string,
+  rating: string
+  uploadImage?: Image;
+}
+
+export interface CommentUpdaterFiel {
+  userName?: string;
+  userImage?: string;
+  userEmail?: string;
+  rating?: string;
+  text?: string;
+  uploadImage?: Image;
+}

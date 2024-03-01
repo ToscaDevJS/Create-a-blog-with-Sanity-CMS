@@ -1,14 +1,11 @@
-import { AddComments } from "@/components/Notas/AddComments";
 import { CardNotas } from "@/components/Notas/CardNotas";
-import { DeleteCommments } from "@/components/Notas/DeleteComments";
-import { DrawerAction } from "@/components/Notas/Drawer";
+import { DrawerActionNewComments } from "@/components/Notas/Drawer";
 import { HeaderNotas } from "@/components/Notas/ui/HeaderNotas";
-import { UpdateComments } from "@/components/Notas/UpdateComments";
 import { getAllComments } from "@/sanity/queries/Sanity.CommentQueries";
-import { CommentTypes } from "@/sanity/types/Sanity.CommentTypes";
+import { CommentDBTypes } from "@/sanity/types/Sanity.CommentTypes";
 
 const PageCrud = async () => {
-  const commentList: CommentTypes[] = await getAllComments();
+  const commentList: CommentDBTypes[] = await getAllComments();
 
   return (
     <main>
@@ -22,6 +19,7 @@ const PageCrud = async () => {
             <CardNotas key={data._id} {...data} />
           ))}
         </section>
+        <DrawerActionNewComments />
       </section>
     </main>
   );

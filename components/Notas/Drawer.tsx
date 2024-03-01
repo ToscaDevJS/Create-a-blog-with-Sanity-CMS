@@ -6,13 +6,21 @@ import {
   IconMoodSmileBeam,
   IconPencil,
   IconPhotoUp,
+  IconTrash,
 } from "@tabler/icons-react";
 import { Drawer } from "vaul";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { createComments } from "@/sanity/queries/Sanity.CommentQueries";
-import { toast } from "sonner";
+import {
+  CommentUpdaterFiel,
+  ICommentCreate,
+} from "@/sanity/types/Sanity.CommentTypes";
+import {
+  createComments,
+  deleteComments,
+  updateComments,
+} from "@/sanity/queries/Sanity.CommentQueries";
 
-export const DrawerAction = ({ id }: { id: string }) => {
+export const DrawerActionNewComments = () => {
   return (
     <Drawer.Root>
       <Drawer.Trigger className="bg-white w-full border text-center hover:bg-zinc-100 text-black p-3 mt-10 rounded-md shadow-xl flex justify-center px-1 ">
@@ -28,45 +36,59 @@ export const DrawerAction = ({ id }: { id: string }) => {
   );
 };
 
-export interface CreateComment {
-  _type: string;
-  userName: string;
-  productoId: string;
-  userUid: string;
-  userImage: string;
-  userEmail: string;
-  text: string;
-  rating: string;
-}
-
-type Inputs = {
-  example: string;
-  exampleRequired: string;
+export const DrawerActionDeleteCommments = ({ id }: { id: string }) => {
+  console.log(id);
+  return (
+    <Drawer.Root>
+      <Drawer.Trigger>
+        <div className="shadow-xl p-1 rounded-lg hover:bg-gray-100">
+          <IconTrash size={18} />
+        </div>
+      </Drawer.Trigger>
+      <Drawer.Portal>
+        <Drawer.Overlay className="fixed inset-0 bg-black/40" />
+        <Drawer.Content className="bg-zinc-100 flex flex-col rounded-t-[10px] mt-24 fixed bottom-0 left-0 right-0">
+          <DeleteCommments id={id} />
+        </Drawer.Content>
+      </Drawer.Portal>
+    </Drawer.Root>
+  );
 };
+export const DrawerActionEditeCommments = ({ id }: { id: string }) => {
+  console.log(id);
+  return (
+    <Drawer.Root>
+      <Drawer.Trigger>
+        <div className="shadow-xl p-1 rounded-lg hover:bg-gray-100">
+          <IconPencil size={18} />
+        </div>
+      </Drawer.Trigger>
+      <Drawer.Portal>
+        <Drawer.Overlay className="fixed inset-0 bg-black/40" />
+        <Drawer.Content className="bg-zinc-100 flex flex-col rounded-t-[10px] mt-24 fixed bottom-0 left-0 right-0">
+          <EditeComments id={id} />
+        </Drawer.Content>
+      </Drawer.Portal>
+    </Drawer.Root>
+  );
+};
+
 function NewComments() {
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<CreateComment>();
+  } = useForm<ICommentCreate>();
 
-  const onSubmit: SubmitHandler<CreateComment> = async (data) => {
+  const onSubmit: SubmitHandler<ICommentCreate> = async (data) => {
     console.log(data);
-    const newComment: CreateComment = {
-      _type: "comments",
-      userName: "maria orly",
-      productoId: "1",
-      userUid: "23456787654",
-      userEmail: "mari@gmail.com",
-      userImage:
-        "https://img.freepik.com/psd-gratis/ilustracion-3d-avatar-o-perfil-humano_23-2150671142.jpg?w=740&t=st=1709185958~exp=1709186558~hmac=38eaf715d801e0e5c295732d183eab136292ed25d96eb3719a8d44d6e7072642",
+    const newData: ICommentCreate = {
+      ...data,
+      productoId: "asdsdasd",
       rating: "5",
-      text: data.text,
     };
-    console.log(newComment);
-    await createComments(newComment);
-    toast("Comentario  añadido ok");
+    await createComments(newData);
   };
 
   return (
@@ -106,7 +128,8 @@ function NewComments() {
     </div>
   );
 }
-function DeleteCommments() {
+function DeleteCommments({ id }: { id: string }) {
+  console.log(id);
   return (
     <div className="p-4 bg-white rounded-t-[10px] flex-1">
       <div className="mx-auto w-12 h-1.5 flex-shrink-0 rounded-full bg-zinc-300 mb-8" />
@@ -116,7 +139,12 @@ function DeleteCommments() {
           <b>¿Estás seguro?</b> Ten en cuenta que esta acción es irreversible.
         </Drawer.Title>
         <div className="flex justify-end">
-          <button className="border bg-black rounded-md px-3 py-2 text-white">
+          <button
+            onClick={() => {
+              deleteComments(id);
+            }}
+            className="border bg-black rounded-md px-3 py-2 text-white"
+          >
             Eliminar
           </button>
         </div>
@@ -124,21 +152,38 @@ function DeleteCommments() {
     </div>
   );
 }
-function EditeComments() {
+
+function EditeComments({ id }: { id: string }) {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<ICommentCreate>();
+
+  const onSubmit: SubmitHandler<ICommentCreate> = async (data) => {
+    const newData: CommentUpdaterFiel = {
+      ...data,
+    };
+    console.log(newData);
+
+    await updateComments(id, newData);
+  };
+
   return (
     <div className="p-4 bg-white rounded-t-[10px] flex-1">
       <div className="mx-auto w-12 h-1.5 flex-shrink-0 rounded-full bg-zinc-300 mb-8" />
       <div className="max-w-md mx-auto">
-        <Drawer.Title className="font-medium mb-4">
-          Crear un comentario
-        </Drawer.Title>
-        <section>
+        <Drawer.Title className="font-medium mb-4">EDITE</Drawer.Title>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="relative flex w-full flex-wrap items-stretch mb-3">
             <IconPencil className="z-10 h-2/3 absolute  w-8 pl-3 " />
             <textarea
+              {...register("text", { required: true })}
               placeholder="Escribe algo"
               className="px-3 py-4 border-none  relative placeholder:border-none appearance-none bg-white rounded text-base   outline-none focus:outline-none  w-full pl-10"
             />
+            {errors.text && <p>Escribe un comentario 🤓</p>}
           </div>
           <div className="flex items-center space-x-3">
             <div className="flex space-x-3">
@@ -148,11 +193,14 @@ function EditeComments() {
               <IconCalendarStats />
               <IconMapPin />
             </div>
-            <button className="flex-1 rounded-full p-2 border hover:border-gray-950">
-              Enviar Comentario
+            <button
+              type="submit"
+              className="flex-1 rounded-full p-2 border hover:border-gray-950"
+            >
+              Editar Comentario
             </button>
           </div>
-        </section>
+        </form>
       </div>
     </div>
   );
