@@ -4,6 +4,17 @@ import { ICommentCreate, CommentCreate, CommentUpdaterFiel } from "../types/Sani
 import { authUser } from "@/mocks/auth-user";
 
 
+
+export async function getPostComments(_id: string) {
+  const query = `*[_type == "comments" && _id == "${_id}"][0]{
+    text,
+    rating,
+    _id,
+  }
+  `;
+  const data = await sanityClientConfig.fetch(query);
+  return data;
+}
 export async function getAllComments() {
   const query = `*[_type == "comments"]{
       _id,

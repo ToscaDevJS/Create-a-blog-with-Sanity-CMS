@@ -17,8 +17,10 @@ import {
 import {
   createComments,
   deleteComments,
+  getPostComments,
   updateComments,
 } from "@/sanity/queries/Sanity.CommentQueries";
+import { useEffect, useState } from "react";
 
 export const DrawerActionNewComments = () => {
   return (
@@ -35,7 +37,6 @@ export const DrawerActionNewComments = () => {
     </Drawer.Root>
   );
 };
-
 export const DrawerActionDeleteCommments = ({ id }: { id: string }) => {
   console.log(id);
   return (
@@ -78,6 +79,7 @@ function NewComments() {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm<ICommentCreate>();
 
@@ -89,6 +91,7 @@ function NewComments() {
       rating: "5",
     };
     await createComments(newData);
+    reset();
   };
 
   return (
@@ -152,8 +155,19 @@ function DeleteCommments({ id }: { id: string }) {
     </div>
   );
 }
-
 function EditeComments({ id }: { id: string }) {
+  const [commentList, setCommentList] = useState<CommentUpdaterFiel>();
+
+  useEffect(() => {
+    console.log(id);
+    async function refreshComents() {
+      const fieldsDefault: CommentUpdaterFiel = await getPostComments(id);
+      console.log(fieldsDefault);
+      setCommentList(fieldsDefault);
+    }
+    refreshComents();
+  }, [id]);
+
   const {
     register,
     handleSubmit,
@@ -166,7 +180,6 @@ function EditeComments({ id }: { id: string }) {
       ...data,
     };
     console.log(newData);
-
     await updateComments(id, newData);
   };
 
@@ -179,6 +192,7 @@ function EditeComments({ id }: { id: string }) {
           <div className="relative flex w-full flex-wrap items-stretch mb-3">
             <IconPencil className="z-10 h-2/3 absolute  w-8 pl-3 " />
             <textarea
+              defaultValue={commentList?.text}
               {...register("text", { required: true })}
               placeholder="Escribe algo"
               className="px-3 py-4 border-none  relative placeholder:border-none appearance-none bg-white rounded text-base   outline-none focus:outline-none  w-full pl-10"
