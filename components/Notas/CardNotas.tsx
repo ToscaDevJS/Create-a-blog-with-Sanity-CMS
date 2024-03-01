@@ -2,6 +2,7 @@
 import { formatearFecha } from "@/libs/DateFns.FormatearFecha";
 import { CommentTypes } from "@/sanity/types/Sanity.CommentTypes";
 import { IconPencil, IconStar, IconTrash } from "@tabler/icons-react";
+import { DrawerAction } from "./Drawer";
 
 export const CardNotas = ({
   text,
@@ -38,7 +39,8 @@ export const CardNotas = ({
         </div>
         <p className="text-gris text-sm mt-3">{text}</p>
       </div>
-      <ActionComment />
+      {/* <ActionComment /> */}
+      <DrawerAction id="adasdaasdas" />
     </article>
   );
 };

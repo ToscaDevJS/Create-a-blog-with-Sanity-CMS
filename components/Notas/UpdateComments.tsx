@@ -16,7 +16,7 @@ export const UpdateComments = () => {
         }
         className="bg-white w-full border text-center hover:bg-zinc-100 text-black p-3 mt-10 rounded-md shadow-xl flex justify-center px-1 "
       >
-        Update Comentario userName
+        actualizar Comentario
       </button>
     </>
   );

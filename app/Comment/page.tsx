@@ -1,6 +1,8 @@
 import { AddComments } from "@/components/Notas/AddComments";
 import { CardNotas } from "@/components/Notas/CardNotas";
-import { HeaderNotas } from "@/components/Notas/HeaderNotas";
+import { DeleteCommments } from "@/components/Notas/DeleteComments";
+import { DrawerAction } from "@/components/Notas/Drawer";
+import { HeaderNotas } from "@/components/Notas/ui/HeaderNotas";
 import { UpdateComments } from "@/components/Notas/UpdateComments";
 import { getAllComments } from "@/sanity/queries/Sanity.CommentQueries";
 import { CommentTypes } from "@/sanity/types/Sanity.CommentTypes";
@@ -19,9 +21,6 @@ const PageCrud = async () => {
           {commentList.map((data) => (
             <CardNotas key={data._id} {...data} />
           ))}
-
-          {/* <AddComments /> */}
-          <UpdateComments />
         </section>
       </section>
     </main>
