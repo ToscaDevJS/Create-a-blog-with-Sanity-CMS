@@ -18,6 +18,12 @@ export default function Home() {
             </Link>
             <ArrowUpRightIcon className="h-8 w-8 text-gray-500 inline-block" />
           </li>
+          <li>
+            <Link href="/notas" className=" text-gray-500 underline">
+              notas
+            </Link>
+            <ArrowUpRightIcon className="h-8 w-8 text-gray-500 inline-block" />
+          </li>
         </ul>
       </header>
     </main>

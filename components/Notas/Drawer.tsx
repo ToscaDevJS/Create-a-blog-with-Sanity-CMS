@@ -16,11 +16,12 @@ import {
 } from "@/sanity/types/Sanity.CommentTypes";
 import {
   createComments,
-  deleteComments,
+  //  deleteComments,
   getPostComments,
-  updateComments,
+  //  updateComments,
 } from "@/sanity/queries/Sanity.CommentQueries";
 import { useEffect, useState } from "react";
+import { UseComments } from "@/app/notas/context/commentsContext";
 
 export const DrawerActionNewComments = () => {
   return (
@@ -75,6 +76,8 @@ export const DrawerActionEditeCommments = ({ id }: { id: string }) => {
 };
 
 function NewComments() {
+  const { loadComments } = UseComments();
+
   const {
     register,
     handleSubmit,
@@ -92,6 +95,7 @@ function NewComments() {
     };
     await createComments(newData);
     reset();
+    loadComments();
   };
 
   return (
@@ -132,7 +136,7 @@ function NewComments() {
   );
 }
 function DeleteCommments({ id }: { id: string }) {
-  console.log(id);
+  const { deleteComments } = UseComments();
   return (
     <div className="p-4 bg-white rounded-t-[10px] flex-1">
       <div className="mx-auto w-12 h-1.5 flex-shrink-0 rounded-full bg-zinc-300 mb-8" />
@@ -157,12 +161,11 @@ function DeleteCommments({ id }: { id: string }) {
 }
 function EditeComments({ id }: { id: string }) {
   const [commentList, setCommentList] = useState<CommentUpdaterFiel>();
+  const { updateComments } = UseComments();
 
   useEffect(() => {
-    console.log(id);
     async function refreshComents() {
       const fieldsDefault: CommentUpdaterFiel = await getPostComments(id);
-      console.log(fieldsDefault);
       setCommentList(fieldsDefault);
     }
     refreshComents();
