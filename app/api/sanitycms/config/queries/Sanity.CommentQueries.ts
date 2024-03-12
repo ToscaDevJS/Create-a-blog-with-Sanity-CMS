@@ -1,10 +1,9 @@
-import { toast } from "sonner";
 import { sanityClientConfig } from "../lib/client";
-import { ICommentCreate, CommentCreate, CommentUpdaterFiel } from "../types/Sanity.CommentTypes";
 import { authUser } from "@/mocks/auth-user";
+import { CommentCreate, CommentUpdaterFiel, ICommentCreate } from "../types/Sanity.CommentTypes";
 
 //no guarda en cache
-async function loadComments() {
+export async function loadComments() {
   try {
     const res = await fetch(
       `https://etvkz4mu.api.sanity.io/v2024-01-26/data/query/production?query=*[_type =="comments"]`
@@ -15,8 +14,8 @@ async function loadComments() {
     const allComment = await res.json();
     // Puedes hacer algo con la nota leída si es necesario
     console.log("Notas leídas:", allComment.result);
-    //setNotas(allComment.result);
-    return allComment.result
+    // setNotas(allComment.result);
+    return allComment.result;
   } catch (error) {
     console.error("Error al leer las notas:", error);
   }
@@ -55,7 +54,6 @@ export async function createCommentSimple(newComment: CommentCreate) {
 }
 export async function deleteComments(_id: string) {
   const result = await sanityClientConfig.delete(_id);
-  toast("Comentario eliminado");
   return result;
 }
 export async function updateComments(_id: string, updatePatch: CommentUpdaterFiel) {
@@ -65,7 +63,6 @@ export async function updateComments(_id: string, updatePatch: CommentUpdaterFie
     },
   };
   const result = await sanityClientConfig.patch(_id, patch).commit();
-  toast("Comentario actualizado");
   return result;
 }
 export async function createComments(newData: ICommentCreate) {
@@ -75,6 +72,5 @@ export async function createComments(newData: ICommentCreate) {
     ...newData,
   };
   const result = await sanityClientConfig.create(newComment);
-  //toast("Comentario  añadido ok");
   return result;
 }
