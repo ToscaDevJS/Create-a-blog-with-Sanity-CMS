@@ -14,7 +14,7 @@ export default function Home() {
           </li>
           <li>
             <Link href="/notasapi" className=" text-gray-500 underline">
-              NOTAS API
+              NOTAS API FETCH
             </Link>
             <ArrowUpRightIcon className="h-8 w-8 text-gray-500 inline-block" />
           </li>

@@ -39,7 +39,7 @@ export const DrawerActionNewComments = () => {
   );
 };
 export const DrawerActionDeleteCommments = ({ id }: { id: string }) => {
-  console.log(id);
+
   return (
     <Drawer.Root>
       <Drawer.Trigger>
@@ -57,7 +57,6 @@ export const DrawerActionDeleteCommments = ({ id }: { id: string }) => {
   );
 };
 export const DrawerActionEditeCommments = ({ id }: { id: string }) => {
-  console.log(id);
   return (
     <Drawer.Root>
       <Drawer.Trigger>
