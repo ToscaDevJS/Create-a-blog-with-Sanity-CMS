@@ -180,6 +180,7 @@ function EditeComments({ id }: { id: string }) {
   const onSubmit: SubmitHandler<ICommentCreate> = async (data) => {
     const newData: CommentUpdaterFiel = {
       ...data,
+      id
     };
     console.log(newData);
     await updateComments(id, newData);

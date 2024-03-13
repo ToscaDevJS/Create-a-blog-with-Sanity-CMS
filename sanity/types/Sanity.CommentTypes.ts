@@ -37,6 +37,7 @@ export interface ICommentCreate {
 }
 
 export interface CommentUpdaterFiel {
+  id: string;
   userName?: string;
   userImage?: string;
   userEmail?: string;

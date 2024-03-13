@@ -10,8 +10,8 @@ const config: ClientConfig = {
   dataset: NEXT_PUBLIC_SANITY_DATASET,
   projectId: NEXT_PUBLIC_SANITY_PROJECT_ID,
   token: SANITY_SECRET_TOKEN,
-  useCdn: true,
-  ignoreBrowserTokenWarning: true //ignora el mensaje de alerta en consola Token expuesto
+  useCdn: false,
+  // ignoreBrowserTokenWarning: true //ignora el mensaje de alerta en consola Token expuesto
 }
 export const sanityClientConfig = createClient(config)
 

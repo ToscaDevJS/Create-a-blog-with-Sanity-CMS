@@ -1,9 +1,19 @@
 import { NextRequest, NextResponse } from "next/server";
-import { deleteComments, updateComments } from "../../config/queries/Sanity.CommentQueries";
+import { deleteComments, getPostComments, updateComments } from "../../config/queries/Sanity.CommentQueries";
 import { CommentUpdaterFiel } from "../../config/types/Sanity.CommentTypes";
 
 interface Params {
     params: { id: string };
+}
+
+export async function GET(req: NextRequest, { params }: Params) {
+    try {
+        const slug_ID = String(params.id)
+        const resp = await getPostComments(slug_ID)
+        return NextResponse.json(resp);
+    } catch (error) {
+        return NextResponse.json({ message: "error" }, { status: 500 });
+    }
 }
 
 export async function DELETE(req: NextRequest, { params }: Params) {
